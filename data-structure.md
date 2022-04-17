@@ -19,3 +19,10 @@
       - transactions
 - categories
   - transactions
+
+- users
+- journals
+- categories
+- accounts
+- partitions
+  - transactions

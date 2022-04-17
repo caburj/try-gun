@@ -2,13 +2,13 @@ import { observable, runInAction } from 'mobx';
 import { gun } from './store';
 
 export const username = (() => {
-  const ref = observable.box('');
+  const box = observable.box('');
   return {
     get() {
-      return ref.get();
+      return box.get();
     },
     set(val: string) {
-      runInAction(() => ref.set(val));
+      runInAction(() => box.set(val));
     },
   };
 })();
@@ -30,16 +30,16 @@ export const login = (
 ): Promise<boolean> => {
   return new Promise(async (resolve) => {
     if (signup) {
-      user.create(username, password, async ({ err }: { err: any }) => {
-        if (err) {
+      user.create(username, password, async (ack) => {
+        if (ack.err) {
           resolve(false);
         } else {
           resolve(await login(username, password));
         }
       });
     } else {
-      user.auth(username, password, ({ err }: { err: any }) => {
-        if (err) {
+      user.auth(username, password, (ack) => {
+        if (ack.err) {
           resolve(false);
         } else {
           resolve(true);

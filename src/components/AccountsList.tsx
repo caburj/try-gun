@@ -1,20 +1,16 @@
 import { Observer, observer } from 'mobx-react-lite';
-import accounts from '../accounts';
+import boxes from '../models/boxes';
+import AccountView from './AccountView';
 
 export default observer(() => {
-  console.log('AccountsList');
+  const accounts = boxes.get('accounts');
   return (
-    <ul>
+    <div>
       {accounts.getItems().map(([id, account]) => (
         <Observer key={id}>
-          {() => (
-            <li>
-              <button onClick={() => accounts.delete(id)}>X</button>
-              {account.name}
-            </li>
-          )}
+          {() => <AccountView id={id} account={account} />}
         </Observer>
       ))}
-    </ul>
+    </div>
   );
 });

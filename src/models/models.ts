@@ -2,7 +2,7 @@ import { action, observable } from 'mobx';
 
 type CompareFn<V> = (a: [string, V], b: [string, V]) => -1 | 0 | 1;
 
-interface IMyMap<V> {
+export interface IMyMap<V> {
   // a reactive map that automatically syncs to gun "Map" node
   delete(key: string): Promise<boolean>;
   get(key: string): V | undefined;
@@ -12,7 +12,6 @@ interface IMyMap<V> {
 
 export function makeMap<V>(gunNode): IMyMap<V> {
 
-  // TODO: Should only start listening when node is really available (i.e. user has signed in).
   gunNode.map().on((val: V, id: string) => {
     setKey(id, val);
   });

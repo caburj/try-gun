@@ -1,8 +1,9 @@
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
-import accounts from '../accounts';
+import boxes from '../models/boxes';
 
 export default observer(() => {
+  const accounts = boxes.get('accounts');
   const [accountName, setAccountName] = useState('');
   const onSubmit = async (event) => {
     event.preventDefault();

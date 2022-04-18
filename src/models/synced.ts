@@ -41,9 +41,10 @@ function wrapObj(m, g) {
   return { get, set };
 }
 
-export function getSyncedObj<T = any>(path: string, root): IMySyncedObject<T> {
-  if (!(path in gCache)) {
-    const g = root.path(path);
+export function getSyncedObj<T = any>(path: string[], root): IMySyncedObject<T> {
+  const strPath = path.join('.');
+  if (!(strPath in gCache)) {
+    const g = root.path(strPath);
     const m = observable({});
 
     // start observing the gun object.
@@ -56,11 +57,11 @@ export function getSyncedObj<T = any>(path: string, root): IMySyncedObject<T> {
       }
     });
 
-    gCache[path] = g;
-    sCache[path] = wrapObj(m, g);
+    gCache[strPath] = g;
+    sCache[strPath] = wrapObj(m, g);
   }
 
-  return sCache[path] as IMySyncedObject<T>;
+  return sCache[strPath] as IMySyncedObject<T>;
 }
 
 function getMake(obj, key: string) {
@@ -113,9 +114,10 @@ function wrapMap<V>(m, g): IMySyncedMap<V> {
   return { get, set, getItems, delete: _delete };
 }
 
-export function getSyncedMap<V = any>(path: string, root): IMySyncedMap<V> {
-  if (!(path in gCacheMap)) {
-    const g = root.path(path);
+export function getSyncedMap<V = any>(path: string[], root): IMySyncedMap<V> {
+  const strPath = path.join('.');
+  if (!(strPath in gCacheMap)) {
+    const g = root.path(strPath);
     const m = observable({} as Record<string, V>);
 
     g.map().on((data, key) => {
@@ -132,8 +134,8 @@ export function getSyncedMap<V = any>(path: string, root): IMySyncedMap<V> {
       }
     });
 
-    gCacheMap[path] = g;
-    sCacheMap[path] = wrapMap<V>(m, g);
+    gCacheMap[strPath] = g;
+    sCacheMap[strPath] = wrapMap<V>(m, g);
   }
-  return sCacheMap[path];
+  return sCacheMap[strPath];
 }

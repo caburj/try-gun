@@ -4,7 +4,7 @@ import { user } from '../user';
 import AccountView from './AccountView';
 
 export default observer(() => {
-  const accounts = getSyncedMap('accounts', user);
+  const accounts = getSyncedMap(['accounts'], user);
   return (
     <div>
       {accounts.getItems().map(([id, account]) => (

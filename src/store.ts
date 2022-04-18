@@ -13,4 +13,7 @@ import 'gun/nts';
 (window as any).setImmediate = setTimeout;
 (window as any).Buffer = Buffer.Buffer;
 
-export const gun = GUN({ localStorage: false });
+export const gun = GUN({
+  peers: ['https://gun-manhattan.herokuapp.com/gun'],
+  localStorage: false,
+});

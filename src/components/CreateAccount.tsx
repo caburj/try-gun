@@ -4,7 +4,7 @@ import { getSyncedMap } from '../models/synced';
 import { user } from '../user';
 
 export default observer(() => {
-  const accounts = getSyncedMap('accounts', user);
+  const accounts = getSyncedMap(['accounts'], user);
   const [accountName, setAccountName] = useState('');
   const onSubmit = async (event) => {
     event.preventDefault();

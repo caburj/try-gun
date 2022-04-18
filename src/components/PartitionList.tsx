@@ -7,9 +7,9 @@ export default observer((props: { partitions: IMySyncedMap }) => {
     <ul>
       {props.partitions.getItems().map(([id, partition]) => {
         return (
-          <li>
+          <li key={id}>
             <button onClick={() => props.partitions.delete(id)}>x</button>
-            <Partition key={id} partition={partition} />
+            <Partition partition={partition} />
           </li>
         );
       })}

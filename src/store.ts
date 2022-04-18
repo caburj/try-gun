@@ -6,6 +6,7 @@ import 'gun/lib/radisk';
 import 'gun/lib/store';
 import 'gun/lib/rindexed';
 import 'gun/lib/webrtc';
+import 'gun/lib/path';
 import 'gun/nts';
 
 // Issue in gun: https://github.com/amark/gun/issues/1209

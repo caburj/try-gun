@@ -1,12 +1,17 @@
 import { observer } from 'mobx-react-lite';
-import boxes from '../models/boxes';
+import { getSyncedMap } from '../models/synced';
+import { user } from '../user';
+import PartitionPage from './PartitionsPage';
 
 export default observer(({ id, account }: { id: string; account: any }) => {
-	const accounts = boxes.get('accounts');
+  const accounts = getSyncedMap('accounts', user);
   return (
     <div>
-      <button onClick={() => accounts.delete(id)}>X</button>
-      {account.name}
+      <div>
+        <button onClick={() => accounts.delete(id)}>X</button>
+        {account.name}
+      </div>
+      <PartitionPage accountId={id} />
     </div>
   );
 });

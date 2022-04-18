@@ -1,9 +1,10 @@
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
-import boxes from '../models/boxes';
+import { getSyncedMap } from '../models/synced';
+import { user } from '../user';
 
 export default observer(() => {
-  const accounts = boxes.get('accounts');
+  const accounts = getSyncedMap('accounts', user);
   const [accountName, setAccountName] = useState('');
   const onSubmit = async (event) => {
     event.preventDefault();

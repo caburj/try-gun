@@ -1,7 +1,5 @@
 import { action, observable } from 'mobx';
-import { makeMap } from './models/models';
 import { gun } from './store';
-import boxes from './models/boxes';
 
 export const userAlias = observable.box('');
 
@@ -13,12 +11,7 @@ user.get('alias').on((val: string) => setUserAlias(val));
 
 gun.on('auth', async (event) => {
   const alias = await user.get('alias');
-
-  // Create and set necessary boxes.
-  boxes.set('accounts', makeMap(user.get('accounts')));
-
   setUserAlias(alias);
-
   console.log(`signed in as ${alias}`);
 });
 

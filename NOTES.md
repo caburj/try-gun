@@ -26,3 +26,9 @@
 - accounts
 - partitions
   - transactions
+
+# Coupling between mobx and gun objects
+
+- Whenever a gun object is accessed, it should create a mobx object that is
+  synced with the gun object.
+  - Each path corresponds to cached gun object and mobx object?

@@ -11,6 +11,7 @@ specifiers:
   react: ^18.0.0
   react-dom: ^18.0.0
   typescript: ^4.6.3
+  uuid: ^8.3.2
   vite: ^2.9.2
 
 dependencies:
@@ -20,6 +21,7 @@ dependencies:
   mobx-react-lite: 3.3.0_ec6945183068133ff61c88d19e8f3079
   react: 18.0.0
   react-dom: 18.0.0_react@18.0.0
+  uuid: 8.3.2
 
 devDependencies:
   '@types/react': 18.0.5
@@ -977,6 +979,11 @@ packages:
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true
+
+  /uuid/8.3.2:
+    resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    hasBin: true
+    dev: false
 
   /vite/2.9.5:
     resolution: {integrity: sha512-dvMN64X2YEQgSXF1lYabKXw3BbN6e+BL67+P3Vy4MacnY+UzT1AfkHiioFSi9+uiDUiaDy7Ax/LQqivk6orilg==}

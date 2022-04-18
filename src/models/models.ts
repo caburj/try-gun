@@ -10,6 +10,10 @@ export interface IMyMap<V> {
   getItems(sortKey?: CompareFn<V>): [string, V][];
 }
 
+function isNone(val) {
+  return val == null || val == undefined;
+}
+
 export function makeMap<V>(gunNode): IMyMap<V> {
 
   gunNode.map().on((val: V, id: string) => {
@@ -57,7 +61,8 @@ export function makeMap<V>(gunNode): IMyMap<V> {
   }
 
   function getItems(sortKey?: CompareFn<V>) {
-    const entries = Object.entries(obs).filter(([key, val]) => val);
+    // Do not include falsy values.
+    const entries = Object.entries(obs).filter(([key, val]) => !isNone(val));
     if (!sortKey) {
       return entries;
     }
